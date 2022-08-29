@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 
-const Calculator = () => {
+const Calculator = ({ text }) => {
   const [data, setData] = React.useState(null);
 
   useEffect(() => {
@@ -14,6 +14,7 @@ const Calculator = () => {
     <Box p="2rem">
       <Typography variant="h2">Calculate Taxes</Typography>
       <p>{!data ? "Loading..." : data}</p>
+      <Typography>{text}</Typography>
     </Box>
   );
 };
