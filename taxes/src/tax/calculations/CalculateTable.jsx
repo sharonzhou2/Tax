@@ -57,7 +57,7 @@ const CalculateTable = ({ text }) => {
     }
   }, [text]);
   return (
-    <div style={{ height: 300, width: "100%" }}>
+    <div style={{ height: 400, width: "100%" }}>
       <DataGrid rows={rows} columns={columns} />
     </div>
   );
