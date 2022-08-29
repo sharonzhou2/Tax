@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
+import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/DeleteOutlined";
 // const rows = [
 //   { id: 1, col1: "Hello", col2: "World" },
@@ -58,7 +58,11 @@ const CalculateTable = ({ text }) => {
   }, [text]);
   return (
     <div style={{ height: 400, width: "100%" }}>
-      <DataGrid rows={rows} columns={columns} />
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        components={{ Toolbar: GridToolbar }}
+      />
     </div>
   );
 };
