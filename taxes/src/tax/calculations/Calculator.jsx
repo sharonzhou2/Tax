@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { Box, Typography } from "@mui/material";
+import Distributions from "./distributions/Distributions";
 
-const Calculator = ({ text }) => {
+const Calculator = () => {
   const [data, setData] = React.useState(null);
 
   useEffect(() => {
@@ -14,7 +15,7 @@ const Calculator = ({ text }) => {
     <Box p="2rem">
       <Typography variant="h2">Calculate Taxes</Typography>
       <p>{!data ? "Loading..." : data}</p>
-      <Typography>{text}</Typography>
+      <Distributions></Distributions>
     </Box>
   );
 };

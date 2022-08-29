@@ -32,18 +32,20 @@ const getCategory = (line) => {
     "13A",
     "18A",
     "18H",
+    "19K",
     "20E",
     "20M",
     "20O",
+    "20F",
   ];
 
-  console.log(line);
+  // console.log(line);
 
   line.forEach((text, i) => {
     const found = text.split(" ").find((element) => category.includes(element));
     // console.log(text.split(" "));
     if (found) {
-      // console.log(found);
+      console.log(text);
       let indexOf = text.indexOf(found);
       let number = text.substring(indexOf + 3, indexOf + 11);
 
@@ -71,12 +73,14 @@ function printRows() {
 }
 
 app.post("/extract-text", (req, res) => {
-  if (!req.files) {
+  const { etfType } = req.body;
+  if (!req.files || !etfType) {
     res.status(400);
     res.end();
+    return;
   }
 
-  console.log(req.files.pdfFile);
+  // console.log(req.files.pdfFile);
 
   new PdfReader().parseBuffer(req.files.pdfFile.data, function (err, item) {
     if (!item) {
