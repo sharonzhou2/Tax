@@ -6,7 +6,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import CalculateTable from "../CalculateTable";
+import CalculateTable from "./CalculateTable";
 
 const Distributions = () => {
   const [files, setFiles] = useState(null);
