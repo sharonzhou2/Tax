@@ -6,14 +6,14 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import CalculateTable from "./CalculateTable";
+import DividendsTable from "./DividendsTable";
 
-const Distributions = () => {
+const Dividends = () => {
   const [files, setFiles] = useState(null);
-  const [etf, setETF] = useState("");
+  const [dividend, setDividends] = useState("");
   const [data, setData] = useState("");
 
-  const etfOptions = ["Vanguard", "BetaShares"];
+  const dividendOptions = ["Macquarie", "CommBank"];
   const handleFileSelected = (e) => {
     setFiles(Array.from(e.target.files));
   };
@@ -21,9 +21,11 @@ const Distributions = () => {
     const formData = new FormData();
 
     formData.append("pdfFile", files[0]);
-    formData.append("etfType", etf);
+    formData.append("dividendType", dividend);
 
-    fetch("/extract-distribution-text", {
+    console.log(formData);
+
+    fetch("/extract-dividend-pdf", {
       method: "post",
       body: formData,
     })
@@ -33,19 +35,17 @@ const Distributions = () => {
       })
       .then((res) => {
         setData(res);
-      })
-      .then(console.log)
-      .catch(console.error);
+      });
   };
   return (
     <Box p="1.5rem">
       <Box>
-        <Typography variant="h3">Distributions</Typography>
+        <Typography variant="h3">Dividends</Typography>
         <Box display="flex" justifyContent="center">
-          <Button variant="contained" component="label">
-            Upload File
-            <input type="file" hidden onChange={handleFileSelected} />
-          </Button>
+          {/* <Button variant="contained" component="label">
+            Upload File */}
+          <input type="file" onChange={handleFileSelected} />
+          {/* </Button> */}
           <Button variant="contained" onClick={handleUpload}>
             Upload PDF
           </Button>
@@ -54,16 +54,16 @@ const Distributions = () => {
         <Autocomplete
           disablePortal
           id="combo-box-demo"
-          options={etfOptions}
+          options={dividendOptions}
           sx={{ width: 300, py: "1rem" }}
           renderInput={(params) => <TextField {...params} label="Select ETF" />}
-          onChange={(e, value) => setETF(value)}
+          onChange={(e, value) => setDividends(value)}
         />
 
-        <CalculateTable text={data}></CalculateTable>
+        <DividendsTable text={data}></DividendsTable>
       </Box>
     </Box>
   );
 };
 
-export default Distributions;
+export default Dividends;

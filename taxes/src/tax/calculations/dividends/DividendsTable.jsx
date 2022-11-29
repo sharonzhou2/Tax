@@ -7,7 +7,7 @@ import DeleteIcon from "@mui/icons-material/DeleteOutlined";
 //   { id: 3, col1: "MUI", col2: "is Amazing" },
 // ];
 
-const CalculateTable = ({ text }) => {
+const DividendsTable = ({ text }) => {
   const [rows, setRows] = useState([]);
 
   const handleDeleteClick = (id) => () => {
@@ -17,66 +17,33 @@ const CalculateTable = ({ text }) => {
   const columns = [
     {
       field: "name",
-      headerName: "Name",
-      width: 180,
-      editable: true,
-    },
-    {
-      field: "13U",
-      headerName: "Share of Net Income (13U)",
-      width: 180,
-      editable: true,
-    },
-    {
-      field: "13C",
-      headerName: "Franked Distribution from trusts (13C)",
+      headerName: "ASX Code",
       width: 150,
       editable: true,
     },
     {
-      field: "13Q",
-      headerName: "Share of franking credits from franked dividends (13Q)",
+      field: "date",
+      headerName: "Payment Date",
       width: 150,
       editable: true,
     },
     {
-      field: "13R",
-      headerName:
-        "Share of credit for TFN amounts withheld from interest, dividends and unit trusts (13R)",
+      field: "DRPS",
+      headerName: "Dividends Rate per Share",
       width: 150,
       editable: true,
     },
+    { field: "SH", headerName: "Shares Held", width: 150, editable: true },
+    { field: "UF", headerName: "Unfranked Amount", width: 150, editable: true },
+    { field: "FA", headerName: "Franked Amount", width: 150, editable: true },
+    { field: "GA", headerName: "Gross Amount", width: 150, editable: true },
+    { field: "FC", headerName: "Franking Credit", width: 150, editable: true },
     {
-      field: "13A",
-      headerName: "Share of credit for foreign resident withholding amounts",
+      field: "description",
+      headerName: "Description",
       width: 150,
       editable: true,
     },
-    {
-      field: "18A",
-      headerName: "Net Capital Gains (18A)",
-      width: 150,
-      editable: true,
-    },
-    {
-      field: "18H",
-      headerName: "Total current year capital gains (18H)",
-      width: 150,
-      editable: true,
-    },
-    {
-      field: "20E",
-      headerName: "Foreign income (20E)",
-      width: 150,
-      editable: true,
-    },
-    {
-      field: "20M",
-      headerName: "Other net foreign income (20M)",
-      width: 150,
-      editable: true,
-    },
-    { field: "20O", headerName: "FITO (20O)", width: 150, editable: true },
     {
       field: "actions",
       type: "actions",
@@ -101,7 +68,7 @@ const CalculateTable = ({ text }) => {
       const newRows = JSON.parse(text);
       newRows["id"] = rows.length + 1;
       setRows([...rows, newRows]);
-      // console.log(typeof newRows);
+      console.log(rows);
     }
   }, [text]);
   return (
@@ -115,4 +82,4 @@ const CalculateTable = ({ text }) => {
   );
 };
 
-export default CalculateTable;
+export default DividendsTable;
