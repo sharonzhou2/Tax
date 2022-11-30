@@ -11,7 +11,9 @@ const CalculateTable = ({ text }) => {
   const [rows, setRows] = useState([]);
 
   const handleDeleteClick = (id) => () => {
-    setRows(rows.filter((row) => row.id !== id));
+    const newRows = rows.filter((row) => row.id !== id);
+    localStorage.setItem("distributions", JSON.stringify(newRows));
+    setRows(newRows);
   };
 
   const columns = [
@@ -97,10 +99,45 @@ const CalculateTable = ({ text }) => {
   ];
 
   useEffect(() => {
+    const dist = localStorage.getItem("distributions");
+    if (dist) {
+      console.log("exists");
+
+      const distributions = JSON.parse(dist);
+      setRows([...distributions]);
+    }
+
+    console.log("refreshing page");
+  }, []);
+
+  useEffect(() => {
     if (text) {
       const newRows = JSON.parse(text);
-      newRows["id"] = rows.length + 1;
-      setRows([...rows, newRows]);
+
+      // Save data to local storage
+      const dist = localStorage.getItem("distributions");
+
+      if (dist) {
+        const distributions = JSON.parse(dist);
+        newRows["id"] = distributions.length + 1;
+
+        setRows([...distributions, newRows]);
+        localStorage.setItem(
+          "distributions",
+          JSON.stringify([...distributions, newRows])
+        );
+
+        console.log(rows);
+      } else {
+        setRows([...rows, newRows]);
+        newRows["id"] = 1;
+
+        localStorage.setItem(
+          "distributions",
+          JSON.stringify([...rows, newRows])
+        );
+      }
+
       // console.log(typeof newRows);
     }
   }, [text]);

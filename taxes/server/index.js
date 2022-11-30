@@ -37,6 +37,14 @@ function printRows() {
   [].concat.apply([], rest);
 }
 
+// Used to clear out the data stored in results after uploading each file
+const resetRow = () => {
+  for (const prop of Object.getOwnPropertyNames(results)) {
+    delete results[prop];
+  }
+};
+
+// DISTRUBTION READER
 app.post("/extract-distribution-text", (req, res) => {
   const { etfType } = req.body;
   if (!req.files || !etfType) {
@@ -55,6 +63,10 @@ app.post("/extract-distribution-text", (req, res) => {
       parsers(etfType, results, rest);
       // getCategory(rest, results);
       // console.log(results);
+
+      if (!results.name) {
+        results.name = etfType;
+      }
       res.send(results);
       // console.log(results);
       //   console.log("PAGE:", item.page);
@@ -64,10 +76,6 @@ app.post("/extract-distribution-text", (req, res) => {
       (rows[item.y] = rows[item.y] || []).push(" " + item.text);
     }
   });
-
-  //   pdfParse(req.files.pdfFile).then((result) => {
-  //     res.send(result.text);
-  //   });
 });
 
 // DIVIDEND READER
@@ -85,6 +93,10 @@ app.post("/extract-dividend-pdf", async (req, res) => {
     const pdfRes = [];
 
     pdfRes.push(rows);
+
+    if (!results.name) {
+      results.name = dividendType;
+    }
 
     divParsers(dividendType, results, pdfRes);
     res.send(results);

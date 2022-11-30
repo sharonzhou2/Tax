@@ -28,7 +28,7 @@ const Distributions = () => {
       body: formData,
     })
       .then((res) => {
-        console.log(res);
+        console.log("res", res);
         return res.text();
       })
       .then((res) => {
