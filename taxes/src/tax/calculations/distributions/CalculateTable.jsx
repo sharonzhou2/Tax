@@ -126,12 +126,9 @@ const CalculateTable = ({ text }) => {
           "distributions",
           JSON.stringify([...distributions, newRows])
         );
-
-        console.log(rows);
       } else {
         setRows([...rows, newRows]);
         newRows["id"] = 1;
-
         localStorage.setItem(
           "distributions",
           JSON.stringify([...rows, newRows])

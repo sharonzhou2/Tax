@@ -23,8 +23,6 @@ const Dividends = () => {
     formData.append("pdfFile", files[0]);
     formData.append("dividendType", dividend);
 
-    console.log(formData);
-
     fetch("/extract-dividend-pdf", {
       method: "post",
       body: formData,

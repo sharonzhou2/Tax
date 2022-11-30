@@ -33,22 +33,26 @@ const Distributions = () => {
       })
       .then((res) => {
         setData(res);
-      })
-      .then(console.log)
-      .catch(console.error);
+      });
   };
   return (
     <Box p="1.5rem">
       <Box>
-        <Typography variant="h3">Distributions</Typography>
-        <Box display="flex" justifyContent="center">
-          <Button variant="contained" component="label">
-            Upload File
-            <input type="file" hidden onChange={handleFileSelected} />
-          </Button>
-          <Button variant="contained" onClick={handleUpload}>
-            Upload PDF
-          </Button>
+        <Typography variant="h3" py={3}>
+          Distributions
+        </Typography>
+        <Box display="flex" justifyContent="space-between" width="20%">
+          <Box>
+            <Button variant="contained" component="label">
+              Upload File
+              <input type="file" hidden onChange={handleFileSelected} />
+            </Button>
+          </Box>
+          <Box>
+            <Button variant="contained" onClick={handleUpload}>
+              Upload PDF
+            </Button>
+          </Box>
         </Box>
         <Typography>{data}</Typography>
         <Autocomplete

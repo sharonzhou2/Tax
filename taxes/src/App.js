@@ -6,6 +6,7 @@ import Calculator from "tax/calculations/Calculator";
 import Distributions from "tax/calculations/distributions/Distributions";
 import Dividends from "tax/calculations/dividends/Dividends";
 import styled from "@emotion/styled";
+import Summary from "tax/Summary";
 
 function About() {
   return <h2>About</h2>;
@@ -26,14 +27,17 @@ function App() {
             <Links>
               <StyledLink to="/">Home</StyledLink>
             </Links>
-            <Links>
+            {/* <Links>
               <StyledLink to="/about">About</StyledLink>
-            </Links>
+            </Links> */}
             <Links>
               <StyledLink to="/distributions">Distributions</StyledLink>
             </Links>
             <Links>
               <StyledLink to="/dividends">Dividends</StyledLink>
+            </Links>
+            <Links>
+              <StyledLink to="/summary">Summary</StyledLink>
             </Links>
           </ul>
         </nav>
@@ -48,6 +52,8 @@ function App() {
           ></Route>
 
           <Route path="/dividends" element={<Dividends></Dividends>}></Route>
+          <Route path="/summary" element={<Summary></Summary>}></Route>
+
           <Route path="/" element={<Calculator></Calculator>}></Route>
         </Routes>
       </div>

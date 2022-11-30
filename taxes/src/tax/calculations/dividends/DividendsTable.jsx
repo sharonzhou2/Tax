@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { DataGrid, GridActionsCellItem, GridToolbar } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/DeleteOutlined";
-// const rows = [
-//   { id: 1, col1: "Hello", col2: "World" },
-//   { id: 2, col1: "DataGridPro", col2: "is Awesome" },
-//   { id: 3, col1: "MUI", col2: "is Amazing" },
-// ];
 
 const DividendsTable = ({ text }) => {
   const [rows, setRows] = useState([]);
 
   const handleDeleteClick = (id) => () => {
-    setRows(rows.filter((row) => row.id !== id));
+    const newRows = rows.filter((row) => row.id !== id);
+    localStorage.setItem("dividends", JSON.stringify(newRows));
+    setRows(newRows);
   };
 
   const columns = [
@@ -64,11 +61,33 @@ const DividendsTable = ({ text }) => {
   ];
 
   useEffect(() => {
+    const dist = localStorage.getItem("dividends");
+    if (dist) {
+      const dividends = JSON.parse(dist);
+      setRows([...dividends]);
+    }
+  }, []);
+
+  useEffect(() => {
     if (text) {
       const newRows = JSON.parse(text);
-      newRows["id"] = rows.length + 1;
-      setRows([...rows, newRows]);
-      console.log(rows);
+      // Save data to local storage
+      const dist = localStorage.getItem("dividends");
+
+      if (dist) {
+        const dividends = JSON.parse(dist);
+        newRows["id"] = dividends.length + 1;
+
+        setRows([...dividends, newRows]);
+        localStorage.setItem(
+          "dividends",
+          JSON.stringify([...dividends, newRows])
+        );
+      } else {
+        setRows([...rows, newRows]);
+        newRows["id"] = 1;
+        localStorage.setItem("dividends", JSON.stringify([...rows, newRows]));
+      }
     }
   }, [text]);
   return (
