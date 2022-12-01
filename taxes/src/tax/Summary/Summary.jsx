@@ -5,6 +5,7 @@ import Dividends from "./Dividends";
 import Income from "./Income";
 import logo from "../../assets/male-tax.jpg";
 import TaxCalc from "./TaxCalc";
+import Deductions from "./Deductions";
 
 const Summary = () => {
   return (
@@ -35,8 +36,8 @@ const Summary = () => {
       <Box mb={5}>
         <Income></Income>
         <Dividends></Dividends>
-
         <Distributions></Distributions>
+        <Deductions></Deductions>
       </Box>
 
       <Divider />
