@@ -101,13 +101,9 @@ const CalculateTable = ({ text }) => {
   useEffect(() => {
     const dist = localStorage.getItem("distributions");
     if (dist) {
-      console.log("exists");
-
       const distributions = JSON.parse(dist);
       setRows([...distributions]);
     }
-
-    console.log("refreshing page");
   }, []);
 
   useEffect(() => {
@@ -134,8 +130,6 @@ const CalculateTable = ({ text }) => {
           JSON.stringify([...rows, newRows])
         );
       }
-
-      // console.log(typeof newRows);
     }
   }, [text]);
   return (
