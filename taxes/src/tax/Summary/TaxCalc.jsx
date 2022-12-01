@@ -1,6 +1,7 @@
 import { Box, Divider, Typography } from "@mui/material";
 import { pink } from "@mui/material/colors";
 import React from "react";
+import { convertCurrencyToInteger, formatMoney } from "tax/Numbers";
 
 const YearlyTaxCalc = (income) => {
   if (income <= 18200) return 0;
@@ -18,14 +19,6 @@ const YearlyTaxCalc = (income) => {
 
   return 0.45 * (income - 180000) + 51667;
 };
-
-const convertCurrencyToInteger = (currency) => {
-  return Number(currency.replace(/[^0-9.-]+/g, ""));
-};
-
-function formatMoney(number) {
-  return number.toLocaleString("en-US", { style: "currency", currency: "USD" });
-}
 
 const TaxCalc = () => {
   const inc = localStorage.getItem("income");

@@ -14,6 +14,13 @@ const Distributions = () => {
       </Typography>
 
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 5 }}>
+        <Grid item xs={6}>
+          <Typography variant="h6">Distributions</Typography>
+        </Grid>
+        <Grid item xs={6}>
+          <Typography variant="h6">Amount ($ AUD)</Typography>
+        </Grid>
+
         <Grid item xs={6} key={"13C"}>
           13C - Share of Net Income
         </Grid>
@@ -26,18 +33,15 @@ const Distributions = () => {
         <Grid item xs={6} key={"13U"}>
           13U - Franked Distribution
         </Grid>
-
         <Grid item xs={6}>
           $
           {distributionData.reduce((acc, curr) => {
             return convertCurrencyToInteger(curr["13U"]) + acc;
           }, 0)}
         </Grid>
-
         <Grid item xs={6} key={"13Q"}>
           13Q - Share of Franking Credit
         </Grid>
-
         <Grid item xs={6}>
           $
           {distributionData.reduce((acc, curr) => {
@@ -47,18 +51,15 @@ const Distributions = () => {
         <Grid item xs={6} key={"18A"}>
           18A - Net Capital Gains
         </Grid>
-
         <Grid item xs={6}>
           $
           {distributionData.reduce((acc, curr) => {
             return convertCurrencyToInteger(curr["18A"]) + acc;
           }, 0)}
         </Grid>
-
         <Grid item xs={6} key={"18A"}>
           20E - Foreign Income
         </Grid>
-
         <Grid item xs={6}>
           $
           {distributionData.reduce((acc, curr) => {

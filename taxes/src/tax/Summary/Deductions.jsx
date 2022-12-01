@@ -8,34 +8,25 @@ import {
   Grid,
   IconButton,
   InputAdornment,
-  InputBase,
   InputLabel,
   OutlinedInput,
   TextField,
   Tooltip,
   Typography,
 } from "@mui/material";
-import Avatar from "@mui/material/Avatar";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import ListItemText from "@mui/material/ListItemText";
+
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
-import PersonIcon from "@mui/icons-material/Person";
 import AddIcon from "@mui/icons-material/Add";
-import { blue } from "@mui/material/colors";
 import { useEffect } from "react";
 import InfoIcon from "@mui/icons-material/Info";
-import { theme } from "tax/Theme";
 import { DeleteOutlineRounded } from "@mui/icons-material";
 import { formatMoney } from "tax/Numbers";
 
-function SimpleDialog(props) {
-  const { onClose, selectedValue, open, setIncomes } = props;
+function DeductionsDialog(props) {
+  const { onClose, selectedValue, open, setDeductions } = props;
   const [values, setValues] = React.useState({
-    income: "",
-    tax: "",
+    deductions: "",
     description: "",
   });
 
@@ -49,21 +40,21 @@ function SimpleDialog(props) {
 
   const handleSubmit = (e) => {
     handleClose();
-    const inc = localStorage.getItem("income");
-    if (inc) {
-      const incomes = JSON.parse(inc);
-      incomes.push(values);
-      localStorage.setItem("income", JSON.stringify(incomes));
-      setIncomes(incomes);
+    const deduc = localStorage.getItem("deductions");
+    if (deduc) {
+      const deductions = JSON.parse(deduc);
+      deductions.push(values);
+      localStorage.setItem("deductions", JSON.stringify(deductions));
+      setDeductions(deductions);
     } else {
-      localStorage.setItem("income", JSON.stringify([values]));
-      setIncomes([values]);
+      localStorage.setItem("deductions", JSON.stringify([values]));
+      setDeductions([values]);
     }
   };
 
   return (
     <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Add Income</DialogTitle>
+      <DialogTitle>Add Deductions</DialogTitle>
       <DialogContent>
         <Box
           component="form"
@@ -73,23 +64,16 @@ function SimpleDialog(props) {
           noValidate
           autoComplete="off"
         >
-          <TextField
-            id="outlined-basic"
-            label="Income"
-            variant="outlined"
-            value={values.income}
-            onChange={handleChange("income")}
-          />
           <FormControl fullWidth sx={{ m: 1 }}>
             <InputLabel htmlFor="outlined-adornment-tax">Tax</InputLabel>
             <OutlinedInput
-              id="outlined-adornment-tax"
-              value={values.tax}
-              onChange={handleChange("tax")}
+              id="outlined-basic"
+              label="Deductions"
+              value={values.deductions}
+              onChange={handleChange("deductions")}
               startAdornment={
                 <InputAdornment position="start">$</InputAdornment>
               }
-              label="Tax"
             />
           </FormControl>
         </Box>
@@ -119,19 +103,19 @@ function SimpleDialog(props) {
   );
 }
 
-const Income = () => {
+const Deductions = () => {
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState("");
-  const [incomes, setIncomes] = useState([]);
+  const [deductions, setDeductions] = useState([]);
 
   useEffect(() => {
-    const inc = localStorage.getItem("income");
+    const deduc = localStorage.getItem("deductions");
 
-    if (inc) {
-      const income = JSON.parse(inc);
-      setIncomes(income);
+    if (deduc) {
+      const deductions = JSON.parse(deduc);
+      setDeductions(deductions);
     } else {
-      setIncomes([]);
+      setDeductions([]);
     }
   }, []);
 
@@ -140,8 +124,8 @@ const Income = () => {
   };
 
   const handleReset = () => {
-    localStorage.setItem("income", "");
-    setIncomes([]);
+    localStorage.setItem("deductions", "");
+    setDeductions([]);
   };
 
   const handleClose = (value) => {
@@ -152,73 +136,67 @@ const Income = () => {
     <div>
       <Box display="flex">
         <Typography variant="h4" py={3}>
-          Income
+          Deductions
         </Typography>
-        <Tooltip title="Add any income from PAYG or interest here">
+        <Tooltip title="Add any deductions E.g. Work Expenses">
           <IconButton>
             <InfoIcon color="primary" />
           </IconButton>
         </Tooltip>
       </Box>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
-        {incomes ? (
+        {deductions ? (
           <>
             <Grid item xs={5}>
-              <Typography variant="h6">Income</Typography>
+              <Typography variant="h6">Deduction</Typography>
             </Grid>
             <Grid item xs={3}>
-              <Typography variant="h6">Amount</Typography>
-            </Grid>
-            <Grid item xs={3}>
-              <Typography variant="h6"> Tax Withheld</Typography>
+              <Typography variant="h6">Amount ($AUD)</Typography>
             </Grid>
           </>
         ) : (
           ""
         )}
 
-        {incomes
-          ? incomes.map((curr, i) => (
+        {deductions
+          ? deductions.map((curr, i) => (
               <>
                 <Grid item xs={5}>
                   {curr.description}
                 </Grid>
                 <Grid item xs={3}>
-                  {formatMoney(curr.income)}
-                </Grid>
-                <Grid item xs={3}>
-                  {formatMoney(curr.tax)}
+                  {formatMoney(curr.deductions)}
                 </Grid>
               </>
             ))
-          : "No Incomes Added"}
+          : "No deductions Added"}
       </Grid>
 
       <br />
-      <Box display="flex" width="22rem" justifyContent="space-between">
+      <Box display="flex" width="28rem" justifyContent="space-between">
         <Button
           variant="contained"
           onClick={handleClickOpen}
           startIcon={<AddIcon></AddIcon>}
         >
-          Add Income
+          Add Deductions
         </Button>
         <Button
           variant="outlined"
           onClick={handleReset}
           endIcon={<DeleteOutlineRounded></DeleteOutlineRounded>}
         >
-          Clear All Income
+          Clear All Deductions
         </Button>
       </Box>
-      <SimpleDialog
+      <DeductionsDialog
         selectedValue={selectedValue}
         open={open}
         onClose={handleClose}
-        setIncomes={setIncomes}
+        setDeductions={setDeductions}
       />
     </div>
   );
 };
 
-export default Income;
+export default Deductions;

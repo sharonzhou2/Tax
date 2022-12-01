@@ -14,6 +14,12 @@ const Dividends = () => {
       </Typography>
 
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 5 }}>
+        <Grid item xs={6}>
+          <Typography variant="h6">Dividends</Typography>
+        </Grid>
+        <Grid item xs={6}>
+          <Typography variant="h6">Amount ($ AUD)</Typography>
+        </Grid>
         <Grid item xs={6} key={"13C"}>
           Unfranked Amount
         </Grid>
