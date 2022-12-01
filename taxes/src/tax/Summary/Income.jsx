@@ -6,11 +6,13 @@ import {
   DialogContent,
   FormControl,
   Grid,
+  IconButton,
   InputAdornment,
   InputBase,
   InputLabel,
   OutlinedInput,
   TextField,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
@@ -24,6 +26,9 @@ import PersonIcon from "@mui/icons-material/Person";
 import AddIcon from "@mui/icons-material/Add";
 import { blue } from "@mui/material/colors";
 import { useEffect } from "react";
+import InfoIcon from "@mui/icons-material/Info";
+import { theme } from "tax/Theme";
+import { DeleteOutlineRounded } from "@mui/icons-material";
 
 function SimpleDialog(props) {
   const { onClose, selectedValue, open, setIncomes } = props;
@@ -144,9 +149,16 @@ const Income = () => {
   };
   return (
     <div>
-      <Typography variant="h4" py={3}>
-        Income
-      </Typography>
+      <Box display="flex">
+        <Typography variant="h4" py={3}>
+          Income
+        </Typography>
+        <Tooltip title="Add any income from PAYG or interest here">
+          <IconButton>
+            <InfoIcon color="primary" />
+          </IconButton>
+        </Tooltip>
+      </Box>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 5, md: 10 }}>
         {incomes
           ? incomes.map((curr, i) => (
@@ -166,11 +178,19 @@ const Income = () => {
       </Grid>
 
       <br />
-      <Box display="flex" width="20rem">
-        <Button variant="contained" onClick={handleClickOpen}>
+      <Box display="flex" width="22rem" justifyContent="space-between">
+        <Button
+          variant="contained"
+          onClick={handleClickOpen}
+          startIcon={<AddIcon></AddIcon>}
+        >
           Add Income
         </Button>
-        <Button variant="outlined" onClick={handleReset}>
+        <Button
+          variant="outlined"
+          onClick={handleReset}
+          endIcon={<DeleteOutlineRounded></DeleteOutlineRounded>}
+        >
           Clear All Income
         </Button>
       </Box>
