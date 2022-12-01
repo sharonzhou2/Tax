@@ -6,7 +6,7 @@ import Income from "./Income";
 import logo from "../../assets/male-tax.jpg";
 import TaxCalc from "./TaxCalc";
 import Deductions from "./Deductions";
-
+import Info from "tax/Info";
 const Summary = () => {
   return (
     <Box py={2} px={10}>
@@ -43,6 +43,16 @@ const Summary = () => {
       <Divider />
       <Box py={5}>
         <TaxCalc></TaxCalc>
+      </Box>
+
+      <Box
+        display="flex"
+        justifyContent="center"
+        flexDirection="column"
+        alignItems="center"
+      >
+        <Info></Info>
+        <Typography>Made by Sharon Zhou</Typography>
       </Box>
     </Box>
   );

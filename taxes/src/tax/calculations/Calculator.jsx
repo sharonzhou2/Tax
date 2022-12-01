@@ -3,6 +3,7 @@ import { Box, Button, Typography } from "@mui/material";
 import HorizontalLabelPositionBelowStepper from "tax/Stepper";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/women-tax.jpg";
+import Info from "tax/Info";
 
 const Calculator = () => {
   const [data, setData] = React.useState(null);
@@ -15,7 +16,7 @@ const Calculator = () => {
 
   const navigate = useNavigate();
   const routeChange = () => {
-    const path = `distributions`;
+    const path = `/distributions`;
     navigate(path);
   };
 
@@ -80,6 +81,15 @@ const Calculator = () => {
           >
             Get Started Now
           </Button>
+        </Box>
+        <Box
+          display="flex"
+          justifyContent="center"
+          flexDirection="column"
+          alignItems="center"
+        >
+          <Info></Info>
+          <Typography>Made by Sharon Zhou</Typography>
         </Box>
       </Box>
     </>

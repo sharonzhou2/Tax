@@ -11,6 +11,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "tax/Theme";
 import { colors } from "@mui/material";
 import About from "tax/About";
+import Info from "tax/Info";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
           <nav
             style={{
               width: "100%",
-              height: "3rem",
+              height: "5rem",
               borderBottom: "1px solid white",
               // boxShadow: "1px 1px 1px 1px rgba(0, 0, 0, 0.2)",
               // alignContent: "center",
@@ -51,6 +52,7 @@ function App() {
               <Links>
                 <StyledLink to="/summary">Summary</StyledLink>
               </Links>
+              <Info></Info>
             </ul>
           </nav>
 
