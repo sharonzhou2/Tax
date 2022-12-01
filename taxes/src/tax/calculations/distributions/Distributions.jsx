@@ -38,7 +38,13 @@ const Distributions = () => {
   return (
     <Box p="1.5rem">
       <Box>
-        <Typography variant="h3" py={3}>
+        <Typography
+          textTransform="uppercase"
+          letterSpacing="0.35rem"
+          fontWeight="light"
+          variant="h3"
+          py={3}
+        >
           Distributions
         </Typography>
         <Box display="flex" justifyContent="space-between" width="20%">

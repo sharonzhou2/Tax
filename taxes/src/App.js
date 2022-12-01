@@ -10,10 +10,7 @@ import Summary from "tax/Summary/Summary";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "tax/Theme";
 import { colors } from "@mui/material";
-
-function About() {
-  return <h2>About</h2>;
-}
+import About from "tax/About";
 
 function App() {
   return (
@@ -25,7 +22,7 @@ function App() {
               width: "100%",
               height: "3rem",
               borderBottom: "1px solid white",
-              boxShadow: "2px 2px 2px 1px rgba(0, 0, 0, 0.2)",
+              // boxShadow: "1px 1px 1px 1px rgba(0, 0, 0, 0.2)",
               // alignContent: "center",
               // backgroundColor: theme.palette.primary.main,
             }}
@@ -60,7 +57,7 @@ function App() {
           {/* A <Routes> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
           <Routes>
-            <Route path="/about" element={<About />}></Route>
+            <Route path="/about" element={<About></About>}></Route>
             <Route
               path="/distributions"
               element={<Distributions></Distributions>}
@@ -91,5 +88,6 @@ const Links = styled(`li`)`
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: ${theme.palette.primary.main};
-  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
 `;

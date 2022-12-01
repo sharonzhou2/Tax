@@ -38,7 +38,14 @@ const Dividends = () => {
   return (
     <Box p="1.5rem">
       <Box>
-        <Typography variant="h3">Dividends</Typography>
+        <Typography
+          variant="h3"
+          letterSpacing="0.35rem"
+          fontWeight="light"
+          textTransform="uppercase"
+        >
+          Dividends
+        </Typography>
         <Box display="flex" justifyContent="center">
           {/* <Button variant="contained" component="label">
             Upload File */}

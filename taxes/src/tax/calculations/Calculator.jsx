@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import HorizontalLabelPositionBelowStepper from "tax/Stepper";
 import { useNavigate } from "react-router-dom";
+import logo from "../../assets/women-tax.jpg";
 
 const Calculator = () => {
   const [data, setData] = React.useState(null);
@@ -21,8 +22,24 @@ const Calculator = () => {
   return (
     <>
       <Box p={5}>
-        <Typography variant="h2">Calculate Taxes</Typography>
-        {/* <p>{!data ? "Loading..." : data}</p> */}
+        <Box display="flex" alignItems="center">
+          <img
+            src={logo}
+            alt="taxes"
+            style={{
+              width: "20rem",
+            }}
+          />
+          <Typography
+            variant="h2"
+            textTransform="uppercase"
+            letterSpacing="0.5rem"
+            ml="5rem"
+          >
+            Calculate Taxes
+          </Typography>
+          {/* <p>{!data ? "Loading..." : data}</p> */}
+        </Box>
 
         <Typography variant="body1">
           To begin calculating your taxes, do the following steps:
