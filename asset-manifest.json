@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/Tax/static/css/main.4fc50315.css",
+    "main.js": "/Tax/static/js/main.9233902b.js",
+    "static/js/787.fa212a41.chunk.js": "/Tax/static/js/787.fa212a41.chunk.js",
+    "static/media/male-tax.jpg": "/Tax/static/media/male-tax.411e6f410f35b6798224.jpg",
+    "static/media/women-tax.jpg": "/Tax/static/media/women-tax.9a339a146ecc4af7e4fb.jpg",
+    "index.html": "/Tax/index.html",
+    "main.4fc50315.css.map": "/Tax/static/css/main.4fc50315.css.map",
+    "main.9233902b.js.map": "/Tax/static/js/main.9233902b.js.map",
+    "787.fa212a41.chunk.js.map": "/Tax/static/js/787.fa212a41.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4fc50315.css",
+    "static/js/main.9233902b.js"
+  ]
+}
